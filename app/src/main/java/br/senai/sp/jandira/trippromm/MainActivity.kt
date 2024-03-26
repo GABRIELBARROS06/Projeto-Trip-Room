@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.trippromm
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -19,6 +20,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BeachAccess
 import androidx.compose.material.icons.filled.Email
@@ -44,6 +46,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -53,6 +57,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -131,38 +138,56 @@ modifier = Modifier
 
     )
     {
-Text(text = "")
+        Text(text = "")
 
 
-    OutlinedTextField(
-        value = "", onValueChange = {},
-        Modifier
-            .width(370.dp)
-            .height(60.dp)
-            .offset(x = 10.dp, y = -20.dp),
-        colors = OutlinedTextFieldDefaults
-            .colors(
-                unfocusedBorderColor = Color(0xFF9F35B6),
-                unfocusedContainerColor = Color(0xFFFFFFFF),
-                unfocusedLeadingIconColor =  Color(0xFF9F35B6)
-            ),
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Filled.Email,
-                contentDescription = null,
+        OutlinedTextField(
+            value = "", onValueChange = {},
+            Modifier
+                .width(370.dp)
+                .height(60.dp)
+                .offset(x = 10.dp, y = -20.dp),
+            colors = OutlinedTextFieldDefaults
+                .colors(
+                    unfocusedBorderColor = Color(0xFF9F35B6),
+                    unfocusedContainerColor = Color(0xFFFFFFFF),
+                    unfocusedLeadingIconColor = Color(0xFF9F35B6)
+                ),
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Email,
+                    contentDescription = null,
 
-            )
-        },
-        placeholder = {
+                    )
+            },
+            placeholder = {
 
-            Text(text = "Email")
+                Text(text = "Email")
 
+            }
+
+
+        )
+        var senhaState = remember {
+            mutableStateOf("")
         }
 
+        OutlinedTextField(
+            value = senhaState.value, onValueChange = {
+                Log.i("SENAI", "VALOR: $it")
+                senhaState.value = it
 
-    )
-OutlinedTextField(value = "", onValueChange = {},
-    modifier = Modifier
+            },
+            keyboardOptions = KeyboardOptions
+                (
+                keyboardType = KeyboardType.Text,
+                capitalization = KeyboardCapitalization.Sentences
+            ),
+            visualTransformation = PasswordVisualTransformation()
+        )
+
+
+       modifier = Modifier
         .height(60.dp)
         .width(370.dp)
         .offset(x = 10.dp, y = 70.dp),
