@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -32,6 +33,8 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -47,6 +50,10 @@ import br.senai.sp.jandira.trippromm.ui.theme.TripprommTheme
 
 @Composable
 fun TelaHome(controleDeNavegacao: NavHostController){
+
+     var searchState = remember {
+         mutableStateOf("")
+     }
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -195,7 +202,9 @@ fun TelaHome(controleDeNavegacao: NavHostController){
             }
 
         }
-        OutlinedTextField(value = "", onValueChange = {},
+        OutlinedTextField(value = searchState.value, onValueChange = {
+                               searchState.value = it
+        },
             modifier = Modifier
                 .padding(start = 24.dp, top = 8.dp)
                 .width(350.dp),
@@ -222,33 +231,38 @@ fun TelaHome(controleDeNavegacao: NavHostController){
         Text(text = "Past Trips",
             modifier = Modifier
                 .padding(12.dp))
-        Card(
-            modifier = Modifier
-                .width(400.dp)
-                .height(300.dp)
-                .background(Color(0xF7DBDBDB))
-        ) {
-            Column {
-                Image(
-                    painter = painterResource(id = R.drawable.imagem1), contentDescription = "",
+        LazyColumn{
+            item(1){
+                Card(
                     modifier = Modifier
-                        .width(380.dp)
-                        .height(280.dp)
-                        .padding(10.dp, bottom = 125.dp)
+                        .width(400.dp)
+                        .height(300.dp)
+                        .background(Color(0xF7DBDBDB))
+                ) {
+                    Column {
+                        Image(
+                            painter = painterResource(id = R.drawable.imagem1), contentDescription = "",
+                            modifier = Modifier
+                                .width(380.dp)
+                                .height(280.dp)
+                                .padding(10.dp, bottom = 125.dp)
 
-                )
-                Text(
-                    text = "London, 2019",
-                    fontSize = 16.sp,
-                    modifier = Modifier
-                        .offset(x = 10.dp, y = -130.dp),
-                    color = Color(0xFFCE00F1)
-                )
+                        )
+                        Text(
+                            text = "London, 2019",
+                            fontSize = 16.sp,
+                            modifier = Modifier
+                                .offset(x = 10.dp, y = -130.dp),
+                            color = Color(0xFFCE00F1)
+                        )
+                    }
+                    Text(text = "London is the capital and largest city of  the United Kingdom, with a population of just under 9 million.",
+                        modifier = Modifier.offset(x = 0.dp, y = 100.dp))
+
+                }
             }
-            Text(text = "London is the capital and largest city of  the United Kingdom, with a population of just under 9 million.",
-                modifier = Modifier.offset(x = 0.dp, y = 100.dp))
-
         }
+
         Card(
             modifier = Modifier
                 .fillMaxWidth()

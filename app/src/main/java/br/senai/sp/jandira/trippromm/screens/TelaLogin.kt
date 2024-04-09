@@ -2,6 +2,7 @@ package br.senai.sp.jandira.trippromm.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -250,14 +251,19 @@ fun TelaLogin(controleDeNavegacao: NavHostController) {
                 modifier = Modifier
                     .offset(x = -30.dp)
             )
+
             Text(
                 text = "Sing Up ",
                 modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth()
-                    .offset(x = -20.dp),
+                    .offset(x = -20.dp)
+                    .clickable {
+                               controleDeNavegacao.navigate("signup")
+                    },
                 color = Color(0xFF9F35B6),
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+
             )
         }
 

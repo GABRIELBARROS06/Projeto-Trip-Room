@@ -2,6 +2,7 @@ package br.senai.sp.jandira.trippromm.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -248,30 +249,10 @@ fun TelaSignUp(controleDeNavegacao: NavHostController) {
 
 
     }
-    Button(onClick = { /*TODO*/ },
-        modifier = Modifier
-            .height(70.dp)
-            .width(380.dp)
-            .offset(x = 6.dp, y = 580.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFF9F35B6),
-            contentColor =  Color(0xFFFFFFFF)
-        )
 
-    )
 
-    {
 
-        Row {
-            Text(text = "Create Account",
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
 
-            )
-
-        }
-
-    }
 
     Text(text = "Already have an account?",
         modifier = Modifier
@@ -280,21 +261,24 @@ fun TelaSignUp(controleDeNavegacao: NavHostController) {
     Text(text = "Sign In",
         modifier = Modifier
             .offset(x = 320.dp, y = 670.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable {
+                  controleDeNavegacao.navigate("login")
+            },
         fontWeight = FontWeight.Bold,
         color = Color(0xFF9F35B6)
 
     )
+
     Box(modifier = Modifier
         .height(40.dp)
         .width(160.dp)
-        .offset(y = 740.dp)
+        .offset(x = 640.dp)
         .background(
             color = Color(0xFF9F35B6),
-            shape = RoundedCornerShape(2.dp, topEnd = 16.dp)
+            shape = RoundedCornerShape(2.dp, bottomEnd = 16.dp)
         )
     )
-
 
 }
 @Preview(showBackground = true, showSystemUi = true)
