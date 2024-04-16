@@ -46,10 +46,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.trippromm.R
+import br.senai.sp.jandira.trippromm.repository.ViagemRepository
 import br.senai.sp.jandira.trippromm.ui.theme.TripprommTheme
 
 @Composable
-fun TelaHome(controleDeNavegacao: NavHostController){
+fun TelaHome(controleDeNavegacao: NavHostController?){
+    val viagens = ViagemRepository().listarTodasasViagens()
 
      var searchState = remember {
          mutableStateOf("")
@@ -67,7 +69,10 @@ fun TelaHome(controleDeNavegacao: NavHostController){
 
         ) {
 
-            Image(painter = painterResource(id = R.drawable.imagem), contentScale = ContentScale.Crop,contentDescription = "",
+            Image(
+                painter = painterResource(id = R.drawable.imagem),
+                contentScale = ContentScale.Crop,
+                contentDescription = "",
                 modifier = Modifier
                     .fillMaxWidth()
 
@@ -77,14 +82,16 @@ fun TelaHome(controleDeNavegacao: NavHostController){
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.End
             ) {
-                Image(painter = painterResource(id = R.drawable.user), contentDescription = "",
+                Image(
+                    painter = painterResource(id = R.drawable.user), contentDescription = "",
                     modifier = Modifier
 
                         .size(width = 100.dp, height = 80.dp)
                         .padding(14.dp)
                 )
             }
-            Text(text = "Susana Hoffs",
+            Text(
+                text = "Susana Hoffs",
                 modifier = Modifier
                     .offset(x = 295.dp, y = 65.dp),
                 color = Color.White,
@@ -108,22 +115,26 @@ fun TelaHome(controleDeNavegacao: NavHostController){
 
 
                     )
-                Text(text = "You're in Paris",
-                    color = Color.White)
-                Text(text = "My Tripps",
+                Text(
+                    text = "You're in Paris",
+                    color = Color.White
+                )
+                Text(
+                    text = "My Tripps",
                     modifier = Modifier
                         .offset(x = -120.dp, y = 20.dp),
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White)
+                    color = Color.White
+                )
 
             }
         }
 
         Text(text = "Categories")
-        LazyRow{
+        LazyRow {
 
-            item(1){
+            item(1) {
                 Card(
                     modifier = Modifier
                         .height(100.dp)
@@ -156,7 +167,7 @@ fun TelaHome(controleDeNavegacao: NavHostController){
                 }
             }
 
-            item(2){
+            item(2) {
                 Card(
                     modifier = Modifier
                         .height(100.dp)
@@ -178,7 +189,7 @@ fun TelaHome(controleDeNavegacao: NavHostController){
                     }
                 }
             }
-            item(3){
+            item(3) {
                 Card(
                     modifier = Modifier
                         .height(100.dp)
@@ -202,9 +213,10 @@ fun TelaHome(controleDeNavegacao: NavHostController){
             }
 
         }
-        OutlinedTextField(value = searchState.value, onValueChange = {
-                               searchState.value = it
-        },
+        OutlinedTextField(
+            value = searchState.value, onValueChange = {
+                searchState.value = it
+            },
             modifier = Modifier
                 .padding(start = 24.dp, top = 8.dp)
                 .width(350.dp),
@@ -228,53 +240,53 @@ fun TelaHome(controleDeNavegacao: NavHostController){
             },
             shape = RoundedCornerShape(16.dp)
         )
-        Text(text = "Past Trips",
+        Text(
+            text = "Past Trips",
             modifier = Modifier
-                .padding(12.dp))
-        LazyColumn{
-            item(1){
-                Card(
+                .padding(12.dp)
+        )
+
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(viagens) {
+                Card (
                     modifier = Modifier
-                        .width(400.dp)
-                        .height(300.dp)
-                        .background(Color(0xF7DBDBDB))
+                        .fillMaxWidth()
+
+                        .padding(bottom = 4.dp)
                 ) {
-                    Column {
-                        Image(
-                            painter = painterResource(id = R.drawable.imagem1), contentDescription = "",
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        Surface (
                             modifier = Modifier
-                                .width(380.dp)
-                                .height(280.dp)
-                                .padding(10.dp, bottom = 125.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Image(
+                                if(it.image == null) painterResource(id = R.drawable.no_image) else (it.image!!),
+                                contentDescription = ""
+                            )
 
-                        )
-                        Text(
-                            text = "London, 2019",
-                            fontSize = 16.sp,
-                            modifier = Modifier
-                                .offset(x = 10.dp, y = -130.dp),
-                            color = Color(0xFFCE00F1)
-                        )
+                        }
                     }
-                    Text(text = "London is the capital and largest city of  the United Kingdom, with a population of just under 9 million.",
-                        modifier = Modifier.offset(x = 0.dp, y = 100.dp))
+                    Column(
+                        modifier = Modifier
+                            .padding(8.dp)
+                    ) {
+                        Text(text = "${it.destine}, ${it.dataChegada.year}")
+                        Text(text = it.descriptor)
+                        Text(text = "${it.dataChegada.dayOfMonth} ${it.dataChegada.month.toString().substring(0..2)}")
 
+                    }
                 }
             }
         }
-
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp)
-                .padding(top = 10.dp)
-        ) {
-
-        }
-
     }
-
 }
+
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
@@ -284,7 +296,7 @@ fun TelaHomePreview(){
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            //TelaHome(controleDeNavegacao)
+            TelaHome(null)
         }
     }
 }

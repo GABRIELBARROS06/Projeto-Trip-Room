@@ -45,7 +45,7 @@ import androidx.navigation.NavHostController
 import br.senai.sp.jandira.trippromm.ui.theme.TripprommTheme
 
 @Composable
-fun TelaLogin(controleDeNavegacao: NavHostController) {
+fun TelaLogin(controleDeNavegacao: NavHostController?) {
     var mailState = remember {
        mutableStateOf("")
     }
@@ -198,7 +198,7 @@ fun TelaLogin(controleDeNavegacao: NavHostController) {
             Button(
                 onClick = {
                     if (mailState.value == "aluno" && senhaState.value == "1234") {
-                        controleDeNavegacao.navigate("home")
+                        controleDeNavegacao!!.navigate("home")
                     } else {
                         errorState.value = true
                         mensagemErrorState.value = "Usuario ou senha não encontrados"
@@ -259,7 +259,7 @@ fun TelaLogin(controleDeNavegacao: NavHostController) {
                     .fillMaxWidth()
                     .offset(x = -20.dp)
                     .clickable {
-                               controleDeNavegacao.navigate("signup")
+                               controleDeNavegacao!!.navigate("signup")
                     },
                 color = Color(0xFF9F35B6),
                 fontWeight = FontWeight.Bold,
@@ -280,7 +280,7 @@ fun TelaLoginPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-           //TelaLogin(controleDeNavegacao)
+           TelaLogin(null)
         }
     }
 }

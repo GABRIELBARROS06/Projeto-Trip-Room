@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,8 +16,6 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -40,7 +37,7 @@ import br.senai.sp.jandira.trippromm.R
 import br.senai.sp.jandira.trippromm.ui.theme.TripprommTheme
 
 @Composable
-fun TelaSignUp(controleDeNavegacao: NavHostController) {
+fun TelaSignUp(controleDeNavegacao: NavHostController?) {
     var nomeState = remember {
         mutableStateOf("")
     }
@@ -263,7 +260,7 @@ fun TelaSignUp(controleDeNavegacao: NavHostController) {
             .offset(x = 320.dp, y = 670.dp)
             .fillMaxWidth()
             .clickable {
-                  controleDeNavegacao.navigate("login")
+                  controleDeNavegacao!!.navigate("login")
             },
         fontWeight = FontWeight.Bold,
         color = Color(0xFF9F35B6)
@@ -285,6 +282,6 @@ fun TelaSignUp(controleDeNavegacao: NavHostController) {
 @Composable
 fun TelaSignUpPreview() {
     TripprommTheme {
-        //TelaSignUp(controleDeNavegacao)
+        TelaSignUp(null)
     }
 }
