@@ -20,7 +20,7 @@ class ViagemRepository {
                 "é uma cidade do século 21 com uma história que remonta à era romana."
         londres.dataChegada = LocalDate.of(2019, 2, 18)
         londres.dataPartida = LocalDate.of(2019, 2, 21)
-        londres.image = null
+        londres.image = painterResource(id = R.drawable.imagem)
 
 
         val porto = Viagem()

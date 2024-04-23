@@ -39,6 +39,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -163,34 +164,17 @@ fun TelaHome(controleDeNavegacao: NavHostController?){
 
                         ) {
 
+                        Image(if (it.imagem == null) painterResource(id = R.drawable.no_image) else it.imagem!!, contentDescription = "",
+                            modifier = Modifier
+                                .width(40.dp)
+                                .height(40.dp))
                         Text(text = "${it.title}")
                     }
 
                 }
             }
 
-            item(2) {
-                Card(
-                    modifier = Modifier
-                        .height(100.dp)
-                        .width(150.dp)
-                        .padding(6.dp),
-                    colors = CardDefaults
-                        .cardColors(
-                            containerColor = Color(0xFFD992E6),
-                            contentColor = Color(0xFFFFFFFFF)
-                        )
-                ) {
-                    Column(
-                        Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Icon(Icons.Default.Snowboarding, "")
-                        Text(text = "Snow")
-                    }
-                }
-            }
+
             item(3) {
                 Card(
                     modifier = Modifier
@@ -215,6 +199,8 @@ fun TelaHome(controleDeNavegacao: NavHostController?){
             }
 
         }
+
+
         OutlinedTextField(
             value = searchState.value, onValueChange = {
                 searchState.value = it
@@ -274,10 +260,19 @@ fun TelaHome(controleDeNavegacao: NavHostController?){
                         modifier = Modifier
                             .padding(8.dp)
                     ) {
+                        Image(if (it.image == null) painterResource(id = R.drawable.no_image) else it.image!!, contentDescription = "",
+                            modifier = Modifier.height(180.dp)
+                                .width(380.dp),
+                            contentScale = ContentScale.Crop
 
-                        Text(text = "${it.destine}, ${it.dataChegada.year}")
+
+                                )
+                        Text(text = "${it.destine}, ${it.dataChegada.year}",
+                            color = Color(0xFFCE00F1),
+                            fontSize = 24.sp)
                         Text(text = it.descriptor)
-                        Text(text = "${it.dataChegada.dayOfMonth} ${it.dataChegada.month.toString().substring(0..2)}")
+                        Text(text = "${it.dataChegada.dayOfMonth} ${it.dataChegada.month.toString().substring(0..2)}",
+                            color = Color(0xFFCE00F1))
 
                     }
                 }

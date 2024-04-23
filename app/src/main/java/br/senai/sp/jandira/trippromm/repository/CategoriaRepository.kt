@@ -1,11 +1,14 @@
 package br.senai.sp.jandira.trippromm.repository
 
+import androidx.compose.foundation.Image
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BeachAccess
 import androidx.compose.material.icons.filled.Landscape
 import androidx.compose.material.icons.filled.Snowboarding
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
+import br.senai.sp.jandira.trippromm.R
 import br.senai.sp.jandira.trippromm.model.Categoria
 
 class CategoriaRepository {
@@ -15,20 +18,17 @@ class CategoriaRepository {
         // Viagem Londres = new Viagem();
         val montain = Categoria()
         montain.id = 1
-        Icon(imageVector = Icons.Default.Landscape, contentDescription = "")
-
+        montain.imagem = painterResource(id = R.drawable.landscape)
         montain.title = "Montain"
 
         val snow = Categoria()
         snow.id = 2
-            Icon(imageVector = Icons.Default.Snowboarding, contentDescription = "")
-
+        snow.imagem = painterResource(id = R.drawable.snow)
         snow.title = "Snow"
 
         val beach = Categoria()
         beach.id = 3
-            Icon(imageVector = Icons.Default.BeachAccess, contentDescription = "")
-
+        beach.imagem = painterResource(id = R.drawable.beach)
         beach.title = "Beach"
 
         return listOf(montain, snow, beach)
