@@ -32,7 +32,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,6 +51,7 @@ import br.senai.sp.jandira.trippromm.repository.CategoriaRepository
 import br.senai.sp.jandira.trippromm.repository.ViagemRepository
 import br.senai.sp.jandira.trippromm.ui.theme.TripprommTheme
 import androidx.compose.foundation.lazy.LazyRow as LazyRow1
+import androidx.compose.material3.Text as Text
 
 @Composable
 fun TelaHome(controleDeNavegacao: NavHostController?){
@@ -261,7 +261,7 @@ fun TelaHome(controleDeNavegacao: NavHostController?){
                             .padding(8.dp)
                     ) {
                         Image(if (it.image == null) painterResource(id = R.drawable.no_image) else it.image!!, contentDescription = "",
-                            modifier = Modifier.height(180.dp)
+                            modifier = Modifier.height(120.dp)
                                 .width(380.dp),
                             contentScale = ContentScale.Crop
 
@@ -271,8 +271,14 @@ fun TelaHome(controleDeNavegacao: NavHostController?){
                             color = Color(0xFFCE00F1),
                             fontSize = 24.sp)
                         Text(text = it.descriptor)
-                        Text(text = "${it.dataChegada.dayOfMonth} ${it.dataChegada.month.toString().substring(0..2)}",
-                            color = Color(0xFFCE00F1))
+                        Text(
+                            text = "${it.dataChegada.dayOfMonth} ${it.dataChegada.month.toString().substring(0..2)}",
+                            color = Color(0xFFCE00F1),
+                            modifier = Modifier.fillMaxSize(),
+
+                            )
+
+
 
                     }
                 }
