@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BeachAccess
@@ -46,12 +47,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.trippromm.R
+import br.senai.sp.jandira.trippromm.repository.CategoriaRepository
 import br.senai.sp.jandira.trippromm.repository.ViagemRepository
 import br.senai.sp.jandira.trippromm.ui.theme.TripprommTheme
+import androidx.compose.foundation.lazy.LazyRow as LazyRow1
 
 @Composable
 fun TelaHome(controleDeNavegacao: NavHostController?){
     val viagens = ViagemRepository().listarTodasasViagens()
+    val categorias = CategoriaRepository().listarTodasasCategorias()
 
      var searchState = remember {
          mutableStateOf("")
@@ -132,9 +136,9 @@ fun TelaHome(controleDeNavegacao: NavHostController?){
         }
 
         Text(text = "Categories")
-        LazyRow {
+        LazyRow{
 
-            item(1) {
+            items(categorias) {
                 Card(
                     modifier = Modifier
                         .height(100.dp)
@@ -158,10 +162,8 @@ fun TelaHome(controleDeNavegacao: NavHostController?){
                         verticalArrangement = Arrangement.Center,
 
                         ) {
-                        Icon(
-                            Icons.Default.Landscape, "",
-                        )
-                        Text(text = "Mountain")
+
+                        Text(text = "${it.title}")
                     }
 
                 }
@@ -264,10 +266,7 @@ fun TelaHome(controleDeNavegacao: NavHostController?){
                             modifier = Modifier
                                 .fillMaxWidth()
                         ) {
-                            Image(
-                                if(it.image == null) painterResource(id = R.drawable.no_image) else (it.image!!),
-                                contentDescription = ""
-                            )
+
 
                         }
                     }
@@ -275,6 +274,7 @@ fun TelaHome(controleDeNavegacao: NavHostController?){
                         modifier = Modifier
                             .padding(8.dp)
                     ) {
+
                         Text(text = "${it.destine}, ${it.dataChegada.year}")
                         Text(text = it.descriptor)
                         Text(text = "${it.dataChegada.dayOfMonth} ${it.dataChegada.month.toString().substring(0..2)}")
