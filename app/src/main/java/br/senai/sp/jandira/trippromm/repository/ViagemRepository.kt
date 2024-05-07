@@ -3,6 +3,7 @@ package br.senai.sp.jandira.trippromm.repository
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import br.senai.sp.jandira.trippromm.R
+import br.senai.sp.jandira.trippromm.dao.TripRoomDb
 import br.senai.sp.jandira.trippromm.model.Viagem
 
 import java.time.LocalDate
@@ -10,6 +11,7 @@ import java.time.LocalDate
 @Suppress("UNREACHABLE_CODE")
 class ViagemRepository {
 
+    private val db = TripRoomDb.getBancoDeDados(context).TripRoomDao()
     @Composable
     fun listarTodasasViagens(): List<Viagem> {
         // Viagem Londres = new Viagem();
@@ -67,6 +69,13 @@ class ViagemRepository {
 
 
         return listOf(londres, porto, amsterda, barcelona, milao)
+
+
+
+        private val db = TripRoomDb.getBancoDeDados(context).TripRoomDao()
+
+
+        }
 
 
     }

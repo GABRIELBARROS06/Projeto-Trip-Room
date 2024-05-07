@@ -50,6 +50,7 @@ import br.senai.sp.jandira.trippromm.R
 import br.senai.sp.jandira.trippromm.repository.CategoriaRepository
 import br.senai.sp.jandira.trippromm.repository.ViagemRepository
 import br.senai.sp.jandira.trippromm.ui.theme.TripprommTheme
+import java.lang.reflect.Modifier
 import androidx.compose.foundation.lazy.LazyRow as LazyRow1
 import androidx.compose.material3.Text as Text
 
