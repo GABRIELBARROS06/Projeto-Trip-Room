@@ -1,18 +1,14 @@
 package br.senai.sp.jandira.trippromm.repository
 
-import androidx.compose.foundation.Image
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BeachAccess
-import androidx.compose.material.icons.filled.Landscape
-import androidx.compose.material.icons.filled.Snowboarding
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import br.senai.sp.jandira.trippromm.R
+import br.senai.sp.jandira.trippromm.dao.TripRoomDb
 import br.senai.sp.jandira.trippromm.model.Categoria
+import android.content.Context
 
 class CategoriaRepository {
-
     @Composable
     fun listarTodasasCategorias(): List<Categoria> {
         // Viagem Londres = new Viagem();

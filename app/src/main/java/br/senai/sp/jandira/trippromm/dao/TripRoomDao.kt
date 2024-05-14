@@ -4,29 +4,34 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Update
-import br.senai.sp.jandira.trippromm.model.Viagem
 import androidx.room.Query
+import br.senai.sp.jandira.trippromm.model.Usuario
+import br.senai.sp.jandira.trippromm.model.Viagem
+
+@Dao
 interface TripRoomDao {
 
     @Insert
-    fun salvar(contato: Contato): Long
+    fun salvar(viagem: Viagem): Long
 
     @Update
-    fun atualizar(contato: Contato): Int
+    fun atualizar(viagem: Viagem): Int
 
     @Delete
-    fun deletar(contato: Contato)
+    fun deletar(viagem: Viagem)
 
-    @Query("SELECT * FROM tbl_contatos ORDER BY nome ASC")
-    fun listarTodosOsCont():List<Contato>
+    @Query("SELECT * FROM tbl_usuarios ORDER BY nome ASC")
+    fun listarTodosOsContatos():List<Viagem>
 
-    @Query("SELECT * FROM tbl_contatos WHERE nome = :nome ORDER BY NOME ASC")
-    fun buscarContatoPeloNome(nome: String): List<Contato>
+    @Query("SELECT * FROM tbl_usuarios WHERE nome = :nome ORDER BY NOME ASC")
+    fun buscarContatoPeloNome(nome: String): List<Viagem>
 
 
-    @Query("SELECT  * FROM tbl_contatos WHERE id = :id")
-    fun buscarContatoPeloId(id: Long): Contato
+    @Query("SELECT  * FROM tbl_usuarios WHERE id = :id")
+    fun buscarContatoPeloId(id: Long): Viagem
 
 
 
 }
+
+

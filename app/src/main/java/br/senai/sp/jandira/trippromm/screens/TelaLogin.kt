@@ -24,7 +24,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.R
+import br.senai.sp.jandira.trippromm.R
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -96,14 +97,14 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
 
         ) {
             Text(
-                text = "Login",
+                text = stringResource(id = R.string.login),
                 fontWeight = FontWeight.Bold,
                 fontSize = 56.sp,
                 color = Color(0xFF9F35B6)
 
             )
             Text(
-                text = "Please sign in to coninue.",
+                text = stringResource(id = R.string.please_sign),
                 modifier = Modifier
                     .offset(x = 0.dp, y = 70.dp),
                 color = Color(0xFF999999)
@@ -149,7 +150,7 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
                 },
                 placeholder = {
 
-                   Text(text = "Email")
+                   Text(text = stringResource(id = R.string.mail))
 
                 },
                         isError = errorState.value
@@ -189,7 +190,7 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
                 },
                 placeholder = {
 
-                    Text(text = "Password")
+                    Text(text = stringResource(id = R.string.password))
 
                 },
                 isError = errorState.value
@@ -215,10 +216,10 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
             ) {
 
 
-                Text(text = "SIGN IN")
+                Text(text = stringResource(id = R.string.sign_in))
                 Image(
                     painter =
-                    painterResource(id = br.senai.sp.jandira.trippromm.R.drawable.seta_direita),
+                    painterResource(id = R.drawable.seta_direita),
                     contentDescription = "",
                     modifier = Modifier
                         .width(20.dp)
@@ -247,19 +248,19 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
 
             )
             Text(
-                text = "Don't have on account?",
+                text = stringResource(id = R.string.dont_a),
                 modifier = Modifier
                     .offset(x = -30.dp)
             )
 
             Text(
-                text = "Sing Up ",
+                text = stringResource(id = R.string.sing_up),
                 modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth()
                     .offset(x = -20.dp)
                     .clickable {
-                               controleDeNavegacao!!.navigate("signup")
+                        controleDeNavegacao!!.navigate("signup")
                     },
                 color = Color(0xFF9F35B6),
                 fontWeight = FontWeight.Bold,

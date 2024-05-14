@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Trippromm</string>
+    <string name="sing_up">Sing Up</string>
+    <string name="create_account">Create a new account</string>
+    <string name="user_name">User</string>
+    <string name="phone">Phone</string>
+    <string name="password">Password</string>
+    <string name="mail">Mail</string>
+    <string name="Is_18">Is 18?</string>
+    <string name="an_account">Already have an account?</string>
+    <string name="sign_in">Sign In</string>
+
+    <string name="login">Login</string>
+    <string name="please_sign">Please sign in to continue.</string>
+    <string name="dont_a">Dont have on account.</string>
+
 </resources>

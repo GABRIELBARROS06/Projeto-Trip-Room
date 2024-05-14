@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -84,7 +85,7 @@ fun TelaSignUp(controleDeNavegacao: NavHostController?) {
 
 
     ) {
-        Text(text = "Sign Up",
+        Text(text = stringResource(id = R.string.sing_up),
             fontSize = 42.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF9F35B6),
@@ -92,7 +93,7 @@ fun TelaSignUp(controleDeNavegacao: NavHostController?) {
                 .offset(x = 85.dp,y = 0.dp )
 
         )
-        Text(text = "Create a new account",
+        Text(text = stringResource(id = R.string.create_account),
             modifier = Modifier
                 .offset(x = 85.dp,y = 60.dp),
             color = Color(0xFFA3A3A3)
@@ -149,7 +150,7 @@ fun TelaSignUp(controleDeNavegacao: NavHostController?) {
                     unfocusedLeadingIconColor =  Color(0xFF9F35B6)
                 ),
             label = {
-                Text(text = "User")
+                Text(text = stringResource(id = R.string.user_name))
             },
             leadingIcon = {
                 Icon(
@@ -175,7 +176,7 @@ fun TelaSignUp(controleDeNavegacao: NavHostController?) {
                     unfocusedLeadingIconColor =  Color(0xFF9F35B6)
                 ),
             label = {
-                Text(text = "Phone")
+                Text(stringResource(id = R.string.phone))
             },
             leadingIcon = {
                 Icon(
@@ -201,7 +202,7 @@ fun TelaSignUp(controleDeNavegacao: NavHostController?) {
                     unfocusedLeadingIconColor =  Color(0xFF9F35B6)
                 ),
             label = {
-                Text(text = "Email")
+                Text(text = stringResource(id = R.string.mail))
             },
             leadingIcon = {
                 Icon(
@@ -227,7 +228,7 @@ fun TelaSignUp(controleDeNavegacao: NavHostController?) {
                     unfocusedLeadingIconColor =  Color(0xFF9F35B6)
                 ),
             label = {
-                Text(text = "Password")
+                Text(text = stringResource(id = R.string.password))
             },
             leadingIcon = {
                 Icon(
@@ -251,16 +252,16 @@ fun TelaSignUp(controleDeNavegacao: NavHostController?) {
 
 
 
-    Text(text = "Already have an account?",
+    Text(text = stringResource(id = R.string.an_account),
         modifier = Modifier
             .offset(x = 120.dp, y = 670.dp)
     )
-    Text(text = "Sign In",
+    Text(text = stringResource(id = R.string.sign_in),
         modifier = Modifier
             .offset(x = 320.dp, y = 670.dp)
             .fillMaxWidth()
             .clickable {
-                  controleDeNavegacao!!.navigate("login")
+                controleDeNavegacao!!.navigate("login")
             },
         fontWeight = FontWeight.Bold,
         color = Color(0xFF9F35B6)
