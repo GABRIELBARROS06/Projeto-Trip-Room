@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Trippromm</string>
+    <string name="sing_up">S/inscrire</string>
+    <string name="create_account">Créer un nouveau compte</string>
+    <string name="user_name">Utilisateur</string>
+    <string name="phone">Téléphone</string>
+    <string name="password">Mot de passe</string>
+    <string name="mail">e-mail</string>
+    <string name="Is_18">Is 18?</string>
+    <string name="an_account">Vous avez déjà un compte?</string>
+    <string name="sign_in">se connecter</string>
+
+    <string name="login">Se connecter</string>
+    <string name="please_sign">
+Veuillez vous connecter pour continuer.</string>
+    <string name="dont_a">Je n/ai pas de compte?</string>
+</resources>
