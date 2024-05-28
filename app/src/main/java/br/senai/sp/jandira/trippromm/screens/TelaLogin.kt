@@ -1,5 +1,10 @@
 package br.senai.sp.jandira.trippromm.screens
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -43,6 +48,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import br.senai.sp.jandira.trippromm.ui.theme.Jacquard12Regular
 import br.senai.sp.jandira.trippromm.ui.theme.TripprommTheme
 
 @Composable
@@ -59,6 +65,15 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
     }
     var mensagemErrorState = remember {
        mutableStateOf("")
+    }
+    var visivel = remember {
+        mutableStateOf(true)
+    }
+    var efeitoEntrada = remember {
+        mutableStateOf(fadeIn())
+    }
+    var efeitoSaida = remember {
+        mutableStateOf(fadeOut())
     }
 
     val contexto = LocalContext.current
@@ -99,6 +114,7 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
             Text(
                 text = stringResource(id = R.string.login),
                 fontWeight = FontWeight.Bold,
+                fontFamily = Jacquard12Regular,
                 fontSize = 56.sp,
                 color = Color(0xFF9F35B6)
 
@@ -190,7 +206,8 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
                 },
                 placeholder = {
 
-                    Text(text = stringResource(id = R.string.password))
+                    Text(text = stringResource(id = R.string.password),
+                        fontFamily = Jacquard12Regular)
 
                 },
                 isError = errorState.value
@@ -198,7 +215,10 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
             )
             Button(
                 onClick = {
-                    if (mailState.value == "aluno" && senhaState.value == "1234") {
+                    visivel.value = !visivel.value
+                    efeitoEntrada.value = expandHorizontally()
+                    efeitoSaida.value = shrinkHorizontally() + fadeOut(animationSpec = tween(3000))
+                        if (mailState.value == "aluno" && senhaState.value == "1234") {
                         controleDeNavegacao!!.navigate("home")
                     } else {
                         errorState.value = true
