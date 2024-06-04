@@ -30,7 +30,11 @@ interface TripRoomDao {
     @Query("SELECT  * FROM tbl_usuarios WHERE id = :id")
     fun buscarContatoPeloId(id: Long): Viagem
 
+    @Query("select * from tbl_usuarios where email = :email order by email asc")
+    fun buscarUsuarioPeloEmail(email : String) : List<Usuario>
 
+    @Query("select * from tbl_usuarios where senha = :senha order by senha asc")
+    fun conferirSenha(senha : String) : List<Usuario>
 
 }
 

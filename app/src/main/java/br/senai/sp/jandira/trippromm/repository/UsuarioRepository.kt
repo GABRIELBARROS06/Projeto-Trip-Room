@@ -17,4 +17,12 @@ class UsuarioRepository(context: Context) {
         return db.listarTodosOsContatos()
     }
 
+    fun buscarUsuario(email: String):List<Usuario>{
+        return db.buscarUsuarioPeloEmail(email)
+    }
+
+    fun buscarSenha(senha: String):List<Usuario>{
+        return db.conferirSenha(senha)
+    }
+
 }

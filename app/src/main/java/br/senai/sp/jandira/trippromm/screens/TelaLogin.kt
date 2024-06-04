@@ -48,6 +48,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import br.senai.sp.jandira.trippromm.repository.UsuarioRepository
 import br.senai.sp.jandira.trippromm.ui.theme.Jacquard12Regular
 import br.senai.sp.jandira.trippromm.ui.theme.TripprommTheme
 
@@ -75,6 +76,8 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
     var efeitoSaida = remember {
         mutableStateOf(fadeOut())
     }
+
+    val cr = UsuarioRepository(LocalContext.current)
 
     val contexto = LocalContext.current
 
@@ -218,7 +221,7 @@ fun TelaLogin(controleDeNavegacao: NavHostController?) {
                     visivel.value = !visivel.value
                     efeitoEntrada.value = expandHorizontally()
                     efeitoSaida.value = shrinkHorizontally() + fadeOut(animationSpec = tween(3000))
-                        if (mailState.value == "aluno" && senhaState.value == "1234") {
+                        if (cr.buscarUsuario(mailState.value).isEmpty() == false  && cr.buscarSenha(senhaState.value).isEmpty() == false) {
                         controleDeNavegacao!!.navigate("home")
                     } else {
                         errorState.value = true
